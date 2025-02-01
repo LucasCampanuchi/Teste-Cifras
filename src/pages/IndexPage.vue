@@ -112,12 +112,18 @@ export default {
         return chord;
       }
 
+      console.log(parsedChord);
+
       let newChord = "";
 
       if (parsedChord.root !== null) {
         newChord = parse(parsedChord.root.originalKeyString)
           .transpose(value)
           .toString();
+
+        if (parsedChord.root.modifier !== null) {
+          newChord += parsedChord.root.modifier;
+        }
       }
 
       if (parsedChord.suffix !== null) {
@@ -128,6 +134,10 @@ export default {
         newChord +=
           "/" +
           parse(parsedChord.bass.originalKeyString).transpose(value).toString();
+
+        if (parsedChord.bass.modifier !== null) {
+          newChord += parsedChord.bass.modifier;
+        }
       }
 
       return newChord;
