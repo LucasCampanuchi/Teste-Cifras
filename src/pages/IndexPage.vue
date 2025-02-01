@@ -1,11 +1,10 @@
 <template>
-  <q-page class="flex flex-center">
-    <div class="container">
-      <h1>Visualizador de Cifras</h1>
+  <div class="container">
+    <p>Visualizador de Cifras</p>
 
-      <textarea
-        class="chord-input"
-        placeholder="Digite sua cifra aqui...
+    <textarea
+      class="chord-input"
+      placeholder="Digite sua cifra aqui...
 Exemplo:
 
          D
@@ -14,22 +13,24 @@ Te amo, Deus
 Tua graça nunca falha
           Bm7
 Todos os dias"
-      ></textarea>
+    ></textarea>
 
-      <div class="controls">
-        <label for="transpose-select">Transpor:</label>
-        <select id="transpose-select" v-model="transposeValue">
-          <option v-for="n in 12" :key="n" :value="n - 6">{{ n - 6 }}</option>
-        </select>
-        <button @click="processChords">Processar Cifra</button>
-        <button @click="clearAll">Limpar</button>
-        <button @click="generatePdf">Gerar PDF</button>
-      </div>
-
-      <div class="chord-display"></div>
-      <div class="chord-diagram"></div>
+    <div class="controls">
+      <label for="transpose-select">Transpor:</label>
+      <select id="transpose-select" v-model="transposeValue">
+        <option v-for="n in 12" :key="n" :value="n - 6">{{ n - 6 }}</option>
+      </select>
     </div>
-  </q-page>
+
+    <div class="row">
+      <button @click="processChords">Processar Cifra</button>
+      <button @click="clearAll">Limpar</button>
+      <button @click="generatePdf">Gerar PDF</button>
+    </div>
+
+    <div class="chord-display"></div>
+    <div class="chord-diagram"></div>
+  </div>
 </template>
 
 <script>
@@ -183,14 +184,19 @@ export default {
 <style>
 body {
   font-family: Arial, sans-serif;
-  max-width: 800px;
+  height: 100vh;
   margin: 0 auto;
   padding: 20px;
   background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
+  width: 100%;
   background-color: white;
+  height: 90%;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -211,6 +217,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 100%;
 }
 
 button {
@@ -220,6 +227,7 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  flex: 1 0 100px;
 }
 
 button:hover {
@@ -250,5 +258,9 @@ button:hover {
 .error {
   color: red;
   margin-top: 10px;
+}
+
+.row {
+  gap: 10px;
 }
 </style>
